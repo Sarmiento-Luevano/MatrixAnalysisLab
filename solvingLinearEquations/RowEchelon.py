@@ -1,15 +1,20 @@
 import Gauss_elimination as gauss 
 import numpy as np
 
-A = np.array([[1, 2, 1, 3, 3],
-              [2, 4, 0, 4, 4],
-              [1, 2, 3, 5, 5],
-              [2, 4, 0, 4, 7]])
+A = np.array([[4, 0, 0, 2],
+              [0, 4, 3, 4],
+              [0, 3, 4, 3],
+              [0, 3, 3, 4]])
 
 def check_nonzeros_below(A, pivot, k):
     v = A[pivot:, k]
+
+    if (np.size(v) == 0):
+        return False
+
     if (np.max(v) == 0):
         return False
+        
     return True
 
 def findLargestPivot(A,k,pivot):
@@ -65,5 +70,17 @@ def Row_Echelon(A):
         print(A)
     return A
 
-A = Row_Echelon(A)
-print(A)
+# A = Row_Echelon(A)
+# print(A)
+A = np.array([[4, 0, 0, 2],
+              [0, 4, 3, 2],
+              [0, 3, 4, 2],
+              [6, 3, 3, 4]])
+
+p = np.array([1,2,3,4])
+
+
+for k in range(1,20):
+    print("k = ", k)
+    A = np.linalg.matrix_power(A,k)
+    print(np.dot(p, A))
